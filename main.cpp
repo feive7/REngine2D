@@ -3,8 +3,8 @@
 #include "raymath.h"
 #include "rlgl.h"
 
-#include "Object2D.h"
-#include "ObjectPrimitives.h"
+#include "engine/Object2D.h"
+#include "engine/ObjectPrimitives.h"
 
 int main(int argc, char **argv) {
     // Define window dimensions
