@@ -1,0 +1,4 @@
+# Linux KDevelop files
+.kdev4/*
+build/*
+*.kdev4
