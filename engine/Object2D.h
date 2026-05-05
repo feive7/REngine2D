@@ -75,6 +75,13 @@ public:
         this->rotation += amount;
     }
 
+    void moveX(float amount) {
+        this->position.x += amount;
+    }
+    void moveY(float amount) {
+        this->position.y += amount;
+    }
+
     Matrix getLocalTransform() {
         Matrix local_transform = MatrixIdentity();
         local_transform *= MatrixRotateZ(rotation);

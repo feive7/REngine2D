@@ -5,6 +5,7 @@
 
 #include "engine/Object2D.h"
 #include "engine/ObjectPrimitives.h"
+#include "engine/Sprite2D.h"
 
 int main(int argc, char **argv) {
     // Define window dimensions
@@ -12,16 +13,16 @@ int main(int argc, char **argv) {
     const int window_height = 450;
 
     // Create window
+    SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(window_width,window_height,"Raylib Example");
     SetTargetFPS(60);
 
     // Create scene
-    Box* mouse = new Box();
-    mouse->setPosition({0.0f,0.0f});
+    Sprite2D* mouse = new Sprite2D("../assets/sprites/coconut.png");
+    mouse->setPosition({400.0f,225.0f});
     mouse->setRotation(0.0f);
     mouse->setScale({1.0f,1.0f});
     mouse->size = {100.0f,100.0f};
-    mouse->color = RED;
     mouse->reparent(nullptr);
 
     Box* point = new Box();
@@ -34,12 +35,6 @@ int main(int argc, char **argv) {
 
     // Main loop
     while(!WindowShouldClose()) {
-        mouse->setPosition(GetMousePosition());
-        mouse->rotate(1.0f);
-
-        float s = 0.5f * sin(GetTime()) + 0.5f;
-        mouse->setScale({s,s});
-
         BeginDrawing();
         ClearBackground(DARKGRAY);
         mouse->_draw();
