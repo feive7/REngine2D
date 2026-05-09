@@ -6,3 +6,6 @@ build/*
 # Microsoft Visual Studio files
 .vs/*
 out/*
+
+# This project's files
+assets/*
