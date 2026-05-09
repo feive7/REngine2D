@@ -2,3 +2,7 @@
 .kdev4/*
 build/*
 *.kdev4
+
+# Microsoft Visual Studio files
+.vs/*
+out/*
