@@ -15,6 +15,7 @@ public:
     virtual ~Object2D() {}
     virtual void _draw() {}
     virtual void _update() {}
+    virtual void _ready() {}
 
     void drawChildren() {
         // Call the _draw() function of each child
