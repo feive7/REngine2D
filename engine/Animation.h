@@ -41,9 +41,11 @@ public:
         float next_rotation = next_keyframe.rotation;
         Vector2 next_scale = next_keyframe.scale;
 
-        this->position = Vector2Lerp(last_position, next_position, getFrameProgress());
-        this->rotation = Lerp(last_rotation, next_rotation, getFrameProgress());
-        this->scale = Vector2Lerp(last_scale, next_scale, getFrameProgress());
+        float p = getFrameProgress();
+        //p = 3 * p * p - 2 * p * p * p;
+        this->position = Vector2Lerp(last_position, next_position, p);
+        this->rotation = Lerp(last_rotation, next_rotation, p);
+        this->scale = Vector2Lerp(last_scale, next_scale, p);
     }
     float getFrameProgress() {
         return time - keyframes[frame].timestamp;
