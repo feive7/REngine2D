@@ -5,7 +5,6 @@ public:
     Color color;
     void _draw() override {
         DrawCircleV(getGlobalPosition(),radius,color);
-        drawChildren();
     }
     void _update() override {
 
@@ -22,6 +21,5 @@ public:
         Vector2 gscale = size * getGlobalScale();
         Rectangle rect = {gpos.x,gpos.y,gscale.x,gscale.y};
         DrawRectanglePro(rect,{rect.width/2.0f,rect.height/2.0f},-grot,color);
-        drawChildren();
     }
 };

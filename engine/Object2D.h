@@ -17,11 +17,22 @@ public:
     virtual void _update() {}
     virtual void _ready() {}
 
-    void drawChildren() {
-        // Call the _draw() function of each child
-        // Probably put this at the end of every overriden _draw() function so this can cascade down the tree
+    void drawTree() {
+        _draw();
         for(Object2D* child : children) {
-            child->_draw();
+            child->drawTree();
+        }
+    }
+    void updateTree() {
+        _update();
+        for (Object2D* child : children) {
+            child->updateTree();
+        }
+    }
+    void readyTree() {
+        _ready();
+        for (Object2D* child : children) {
+            child->readyTree();
         }
     }
 

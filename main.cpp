@@ -8,6 +8,16 @@
 #include "engine/Sprite2D.h"
 #include "engine/Animation.h"
 
+class Coconut : public Sprite2D {
+public:
+    Coconut() {
+        setTexture("../../../../assets/sprites/coconut.png");
+    }
+    void _update() override {
+        this->rotate(1);
+    }
+};
+
 int main(int argc, char **argv) {
     // Define window dimensions
     const int window_width = 800;
@@ -19,44 +29,26 @@ int main(int argc, char **argv) {
     SetTargetFPS(60);
 
     // Create scene
-    Box* point = new Box();
-    point->setPosition({0.0f,10.0f });
-    point->setRotation(0.0f);
-    point->setScale({1.0f,1.0f});
-    point->size = {10.0f,20.0f};
-    point->color = BLUE;
+    Object2D* scene = new Object2D();
+    scene->setPosition({ 400.0f,225.0f });
+    scene->setRotation(0.0f);
+    scene->setScale({ 1.0f,1.0f });
 
-    Animation* anim = new Animation();
-    anim->setPosition({400.0f,225.0f});
-    anim->keyframes.push_back(Keyframe{
-        1.0f,
-        {350.0f,225.0f},
-        180.0f,
-        {1.0f,1.0f},
-    });
-    anim->keyframes.push_back(Keyframe{
-        2.0f,
-        {400.0f,100.0f},
-        90.0f,
-        {1.0f,1.0f},
-        });
-    anim->keyframes.push_back(Keyframe{
-        3.0f,
-        {450.0f,225.0f},
-        270.0f,
-        {4.0f,4.0f},
-    });
-    anim->playing = true;
-    anim->looping = true;
-    anim->_ready();
-    point->reparent(anim);
+    Coconut* coconut = new Coconut();
+    coconut->setPosition({100.0f,10.0f });
+    coconut->setRotation(0.0f);
+    coconut->setScale({1.0f,1.0f});
+    coconut->size = {200.0f,200.0f};
+    coconut->reparent(scene);
+
+    scene->readyTree();
 
     // Main loop
     while(!WindowShouldClose()) {
-        anim->_update();
+        scene->updateTree();
         BeginDrawing();
         ClearBackground(DARKGRAY);
-        anim->_draw();
+        scene->drawTree();
         EndDrawing();
     }
 
