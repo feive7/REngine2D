@@ -40,6 +40,10 @@ public:
         new_child->reparent(this);
         return new_child;
     }
+    Object2D& addChild(Object2D& new_child) {
+        new_child.reparent(this);
+        return new_child;
+    }
     void reparent(Object2D* new_parent) {
         if(parent == new_parent)
             return;
@@ -96,7 +100,7 @@ public:
 
     Matrix getLocalTransform() {
         Matrix local_transform = MatrixIdentity();
-        local_transform *= MatrixRotateZ(rotation);
+        local_transform *= MatrixRotateZ(rotation * -DEG2RAD);
         local_transform *= MatrixTranslate(position.x,position.y,0.0f);
         return local_transform;
     }
