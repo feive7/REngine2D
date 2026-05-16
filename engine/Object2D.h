@@ -1,7 +1,5 @@
 #pragma once
-#include <vector>
-#include <algorithm>
-class Object2D {
+class Object2D : public Object {
 public:
     Vector2 position = Vector2Zero();
     float rotation = 0.0f;
@@ -9,59 +7,8 @@ public:
 
     Matrix transform = MatrixIdentity();
 
-    Object2D* parent = nullptr;
-    std::vector<Object2D*> children = {};
-
-    virtual ~Object2D() {}
-    virtual void _draw() {}
-    virtual void _update() {}
-    virtual void _ready() {}
-
-    void drawTree() {
-        _draw();
-        for(Object2D* child : children) {
-            child->drawTree();
-        }
-    }
-    void updateTree() {
-        _update();
-        for (Object2D* child : children) {
-            child->updateTree();
-        }
-    }
-    void readyTree() {
-        _ready();
-        for (Object2D* child : children) {
-            child->readyTree();
-        }
-    }
-
-    Object2D* addChild(Object2D* new_child) {
-        new_child->reparent(this);
-        return new_child;
-    }
-    Object2D& addChild(Object2D& new_child) {
-        new_child.reparent(this);
-        return new_child;
-    }
-    void reparent(Object2D* new_parent) {
-        if(parent == new_parent)
-            return;
-
-        if(new_parent) {
-            auto child = std::find(new_parent->children.begin(), new_parent->children.end(), this);
-            if(child != new_parent->children.end())
-                new_parent->children.erase(child);
-        }
-
-        parent = new_parent;
-        if(parent)
-            parent->children.push_back(this);
-    }
-    void detach() {
-        if(!parent)
-            return;
-        reparent(nullptr);
+    Object2D* getParent2D() {
+        return dynamic_cast<Object2D*>(parent);
     }
 
     Vector2 getPosition() {
@@ -106,24 +53,23 @@ public:
     }
     Matrix getGlobalTransform() {
         Matrix parent_matrix = MatrixIdentity();
-        if(parent)
-            parent_matrix = parent->getGlobalTransform();
+        if(Object2D* parent2D = getParent2D()) parent_matrix = parent2D->getGlobalTransform();
         return getLocalTransform() * parent_matrix;
     }
 
     Vector2 getGlobalPosition() {
-        if(parent)
-            return Vector2Rotate(parent->scale * position,parent->rotation * -DEG2RAD) + parent->getGlobalPosition();
+        if(Object2D* parent2D = getParent2D())
+            return Vector2Rotate(parent2D->scale * position, parent2D->rotation * -DEG2RAD) + parent2D->getGlobalPosition();
         return position;
     }
     float getGlobalRotation() {
-        if(parent)
-            return rotation + parent->getGlobalRotation();
+        if(Object2D* parent2D = getParent2D())
+            return rotation + parent2D->getGlobalRotation();
         return rotation;
     }
     Vector2 getGlobalScale() {
-        if(parent)
-            return scale * parent->getGlobalScale();
+        if(Object2D* parent2D = getParent2D())
+            return scale * parent2D->getGlobalScale();
         return scale;
     }
 };

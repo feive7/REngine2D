@@ -1,4 +1,5 @@
 #pragma once
+#include "Object.h"
 #include "Object2D.h"
 #include "ObjectPrimitives.h"
 #include "Sprite2D.h"
@@ -14,13 +15,10 @@ struct {
 } Mouse;
 
 // Root object
-Object2D* scene;
+Object* scene;
 
 void InitEngine() {
-	scene = new Object2D();
-	scene->setPosition({ 0.0f,0.0f });
-	scene->setRotation(0.0f);
-	scene->setScale({ 1.0f,1.0f });
+	scene = new Object();
 }
 
 void ReadyTree() {
