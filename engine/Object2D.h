@@ -7,43 +7,23 @@ public:
 
     Matrix transform = MatrixIdentity();
 
-    Object2D* getParent2D() {
-        return dynamic_cast<Object2D*>(parent);
-    }
+    Object2D* getParent2D() { return dynamic_cast<Object2D*>(parent); }
 
-    Vector2 getPosition() {
-        return position;
-    }
-    float getRotation() {
-        return rotation;
-    }
-    Vector2 getScale() {
-        return scale;
-    }
+    Vector2 getPosition() { return position; }
+    float getRotation() { return rotation; }
+    Vector2 getScale() { return scale; }
 
-    void setPosition(Vector2 new_position) {
-        this->position = new_position;
-    }
-    void setRotation(float new_rotation) {
-        this->rotation = new_rotation;
-    }
-    void setScale(Vector2 new_scale) {
-        this->scale = new_scale;
-    }
+    void setPosition(Vector2 new_position) { this->position = new_position; }
+    void setPosition(float x, float y) { this->position = {x,y}; }
+    void setX(float x) { this->position.x = x; }
+    void setY(float y) { this->position.y = y; }
+    void setRotation(float new_rotation) { this->rotation = new_rotation; }
+    void setScale(Vector2 new_scale) { this->scale = new_scale; }
 
-    void move(Vector2 amount) {
-        this->position += position;
-    }
-    void rotate(float amount) {
-        this->rotation += amount;
-    }
-
-    void moveX(float amount) {
-        this->position.x += amount;
-    }
-    void moveY(float amount) {
-        this->position.y += amount;
-    }
+    void move(Vector2 amount) { this->position += amount; }
+    void moveX(float amount) { this->position.x += amount; }
+    void moveY(float amount) { this->position.y += amount; }
+    void rotate(float amount) { this->rotation += amount; }
 
     Matrix getLocalTransform() {
         Matrix local_transform = MatrixIdentity();
