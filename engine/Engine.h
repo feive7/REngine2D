@@ -1,7 +1,7 @@
 #pragma once
 #include "Object.h"
 #include "Object2D.h"
-#include "ObjectPrimitives.h"
+#include "Shapes.h"
 #include "Sprite2D.h"
 #include "Animation.h"
 
