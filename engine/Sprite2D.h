@@ -1,7 +1,7 @@
 #pragma once
-class Sprite2D : public Object2D {
+#include "Shapes.h"
+class Sprite2D : public RectShape {
 public:
-    Vector2 size;
     Texture texture;
     Sprite2D() {}
     Sprite2D(const char* filename, bool gen_mipmaps = true) {
@@ -12,12 +12,10 @@ public:
     }
     void setTexture(const char* filename, bool gen_mipmaps = true) {
         this->texture = LoadTexture(filename);
-        this->size = { (float)texture.width,(float)texture.height };
         if (gen_mipmaps) GenTextureMipmaps(&texture);
     }
     void setTexture(Texture texture, bool gen_mipmaps = true) {
         this->texture = texture;
-        this->size = { (float)texture.width,(float)texture.height };
         if (gen_mipmaps) GenTextureMipmaps(&texture);
     }
     void _draw() override {

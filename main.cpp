@@ -13,16 +13,17 @@ int main(int argc, char** argv) {
     // Create window
     SetConfigFlags(FLAG_MSAA_4X_HINT);
     InitWindow(window_width, window_height, "Raylib Example");
-    SetTargetFPS(120);
+    SetTargetFPS(60);
     InitEngine();
 
     // Create scene
-    RectShape* rect = new RectShape();
-    rect->position = { 400.0f,225.0f };
-    rect->rotation = 0.0f;
-    rect->scale = { 1.0f,1.0f };
-    rect->size = { 100.0f,75.0f };
-    rect->reparent(scene);
+    Sprite2D* eefie = new Sprite2D();
+    eefie->position = { 400.0f,225.0f };
+    eefie->rotation = 0.0f;
+    eefie->scale = { 1.0f,1.0f };
+    eefie->size = { 300.0f,300.0f };
+    eefie->setTexture("../assets/funi.jpg");
+    eefie->reparent(scene);
 
     // Initialize scene tree
     ReadyTree();
@@ -30,7 +31,7 @@ int main(int argc, char** argv) {
     // Main loop
     while(!WindowShouldClose()) {
         UpdateTree(); // Run _update() for every element in tree
-        rect->rotate(1.0f);
+        eefie->rotate(1.0f);
 
         BeginDrawing();
         ClearBackground(DARKGRAY);
