@@ -61,7 +61,7 @@ const void Remove(const Object* object) {
 
 class VisualObject {
 public:
-    Color color;
+    Color color = WHITE;
     VisualObject();
     virtual ~VisualObject() {}
     virtual void _draw() {}

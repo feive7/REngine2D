@@ -24,8 +24,8 @@ public:
         Vector2 gpos = getGlobalPosition();
         float grot = getGlobalRotation();
         Vector2 gscl = getGlobalScale();
-        Rectangle dst_rect = {gpos.x,gpos.y,gscl.x * size.x,gscl.y * size.y};
-        DrawTexturePro(texture,src_rect,dst_rect,gscl*size*0.5f,-grot,WHITE);
+        Rectangle dst_rect = {gpos.x,gpos.y,gscl.x * size.x * 2,gscl.y * size.y * 2};
+        DrawTexturePro(texture,src_rect,dst_rect,gscl*size,-grot,color);
     }
     void _update() override {
 

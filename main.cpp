@@ -18,8 +18,20 @@ int main(int argc, char** argv) {
 
     // Create scene
     Sprite2D* sprite = new Sprite2D("../assets/funi.jpg");
+    sprite->setPosition(400.0f,225.0f);
     sprite->size = {100.0f,100.0f};
     sprite->reparent(scene);
+    CollisionBox* sprite_collision = new CollisionBox();
+    sprite_collision->size = sprite->size;
+    sprite_collision->reparent(sprite);
+
+    SolidBox* mouse = new SolidBox();
+    mouse->size = {20.0f,20.0f};
+    mouse->color = BLUE;
+    mouse->reparent(scene);
+    CollisionBox* mouse_collision = new CollisionBox();
+    mouse_collision->size = mouse->size;
+    mouse_collision->reparent(mouse);
 
     // Initialize scene tree
     ReadyTree();
@@ -27,12 +39,15 @@ int main(int argc, char** argv) {
     // Main loop
     while(!WindowShouldClose()) {
         UpdateTree(); // Run _update() for every element in tree
-        Vector2 to_mouse = Vector2Normalize(Mouse.getPosition() - sprite->position);
-        sprite->move(to_mouse);
+        mouse->setPosition(Mouse.getPosition());
+
 
         BeginDrawing();
         ClearBackground(DARKGRAY);
         DrawTree();
+        if(mouse_collision->collidingWith(sprite_collision)) {
+            DrawText("Colliding!",5,25,20,WHITE);
+        }
         DrawFPS(5, 5);
         EndDrawing();
     }

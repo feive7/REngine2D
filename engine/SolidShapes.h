@@ -14,6 +14,6 @@ class SolidBox : public BoxShape, public VisualObject {
         Vector2 gscl = getGlobalScale() * size;
 
         Rectangle rect = {gpos.x,gpos.y,gscl.x * 2,gscl.y * 2};
-        DrawRectanglePro(rect,gscl,-grot,WHITE);
+        DrawRectanglePro(rect,gscl,-grot,color);
     }
 };

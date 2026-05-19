@@ -5,6 +5,7 @@
 #include "SolidShapes.h"
 #include "Sprite2D.h"
 #include "Animation.h"
+#include "Collisions.h"
 
 struct {
 	Vector2 getPosition() {
