@@ -11,10 +11,8 @@ int main(int argc, char** argv) {
     const int window_height = 450;
 
     // Create window
-    SetConfigFlags(FLAG_MSAA_4X_HINT);
-    InitWindow(window_width, window_height, "Raylib Example");
+    InitEngine(window_width, window_height, "Raylib Example");
     SetTargetFPS(60);
-    InitEngine();
 
     // Create scene
     Sprite2D* sprite = new Sprite2D("../assets/funi.jpg");
@@ -53,10 +51,8 @@ int main(int argc, char** argv) {
     }
 
     // Clean up
-    DeleteEverything();
+    Quit();
 
-    // Destroy window
-    CloseWindow();
 
     return 0;
 }

@@ -24,7 +24,9 @@ VisualObject::VisualObject() {
 	drawables.push_back(this);
 }
 
-void InitEngine() {
+void InitEngine(int window_width, int window_height, const char* window_title) {
+	SetConfigFlags(FLAG_MSAA_4X_HINT);
+	InitWindow(window_width, window_height, "Raylib Example");
 	scene = new Object();
 }
 
@@ -40,6 +42,10 @@ void DrawTree() {
 	}
 }
 
-void DeleteEverything() {
+void Quit() {
+	// Delete game objects
 	Remove(scene);
+
+	// Destroy window
+	CloseWindow();
 }
