@@ -17,13 +17,9 @@ int main(int argc, char** argv) {
     InitEngine();
 
     // Create scene
-    Sprite2D* eefie = new Sprite2D();
-    eefie->position = { 400.0f,225.0f };
-    eefie->rotation = 0.0f;
-    eefie->scale = { 1.0f,1.0f };
-    eefie->size = { 300.0f,300.0f };
-    eefie->setTexture("../assets/funi.jpg");
-    eefie->reparent(scene);
+    Sprite2D* sprite = new Sprite2D("../assets/funi.jpg");
+    sprite->size = {100.0f,100.0f};
+    sprite->reparent(scene);
 
     // Initialize scene tree
     ReadyTree();
@@ -31,7 +27,8 @@ int main(int argc, char** argv) {
     // Main loop
     while(!WindowShouldClose()) {
         UpdateTree(); // Run _update() for every element in tree
-        eefie->rotate(1.0f);
+        Vector2 to_mouse = Vector2Normalize(Mouse.getPosition() - sprite->position);
+        sprite->move(to_mouse);
 
         BeginDrawing();
         ClearBackground(DARKGRAY);
@@ -39,6 +36,9 @@ int main(int argc, char** argv) {
         DrawFPS(5, 5);
         EndDrawing();
     }
+
+    // Clean up
+    DeleteEverything();
 
     // Destroy window
     CloseWindow();

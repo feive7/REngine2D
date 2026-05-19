@@ -79,9 +79,4 @@ public:
             nextFrame();
         }
     }
-    void _draw() override {
-        for (int i = 0; i < keyframes.size() - !looping; i++) {
-            DrawLineV(keyframes[i].position, keyframes[(i + 1)%keyframes.size()].position, RED);
-        }
-    }
 };

@@ -7,16 +7,9 @@ public:
     std::vector<Object*> children = {};
 
     virtual ~Object() {}
-    virtual void _draw() {}
     virtual void _update() {}
     virtual void _ready() {}
 
-    void drawTree() {
-        _draw();
-        for (Object* child : children) {
-            child->drawTree();
-        }
-    }
     void updateTree() {
         _update();
         for (Object* child : children) {
@@ -57,4 +50,19 @@ public:
             return;
         reparent(nullptr);
     }
+};
+
+const void Remove(const Object* object) {
+    for(const Object* child : object->children) {
+        Remove(child);
+    }
+    delete object;
+}
+
+class VisualObject {
+public:
+    Color color;
+    VisualObject();
+    virtual ~VisualObject() {}
+    virtual void _draw() {}
 };
