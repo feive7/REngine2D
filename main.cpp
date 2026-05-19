@@ -39,12 +39,11 @@ int main(int argc, char** argv) {
         UpdateTree(); // Run _update() for every element in tree
         mouse->setPosition(Mouse.getPosition());
 
-
         BeginDrawing();
         ClearBackground(DARKGRAY);
         DrawTree();
-        if(mouse_collision->collidingWith(sprite_collision)) {
-            DrawText("Colliding!",5,25,20,WHITE);
+        if(sprite_collision->contains(mouse_collision)) {
+            DrawText("Inside!",5,25,20,WHITE);
         }
         DrawFPS(5, 5);
         EndDrawing();
