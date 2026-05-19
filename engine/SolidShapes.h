@@ -7,7 +7,7 @@ public:
     }
 };
 
-class SolidRect : public RectShape, public VisualObject {
+class SolidBox : public BoxShape, public VisualObject {
     void _draw() override {
         Vector2 gpos = getGlobalPosition();
         float grot = getGlobalRotation();
