@@ -4,7 +4,7 @@ public:
 	virtual bool pointInside(Vector2) = 0;
 };
 
-class RectShape : public Shape {
+class BoxShape : public Shape {
 public:
 	Vector2 size;
 	bool pointInside(Vector2 point) override {
@@ -14,6 +14,16 @@ public:
 			center.x + size.x > point.x &&
 			center.y - size.y < point.y &&
 			center.y + size.y > point.y;
+	}
+	Rectangle getRectangle() {
+		Vector2 gpos = getGlobalPosition();
+		Vector2 gscl = getGlobalScale() * size;
+		return {
+			gpos.x - gscl.x,
+			gpos.y - gscl.y,
+			gscl.x * 2,
+			gscl.y * 2
+		};
 	}
 };
 

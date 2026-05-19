@@ -1,6 +1,6 @@
 #pragma once
 #include "Shapes.h"
-class Sprite2D : public RectShape, public VisualObject {
+class Sprite2D : public BoxShape, public VisualObject {
 public:
     Texture texture;
     Sprite2D() {}
