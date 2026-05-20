@@ -6,6 +6,7 @@
 #include "Sprite2D.h"
 #include "Animation.h"
 #include "Collisions.h"
+#include "Physics.h"
 
 struct {
 	Vector2 getPosition() {

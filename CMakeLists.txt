@@ -8,7 +8,8 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 
 find_package(raylib REQUIRED)
+find_package(box2d REQUIRED)
 add_executable(${PROJECT_NAME} main.cpp "engine/Engine.h" "engine/Object.h"  )
-target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} raylib box2d)
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
