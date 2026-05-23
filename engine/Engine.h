@@ -15,7 +15,7 @@ struct {
 	Vector2 getDelta() {
 		return GetMouseDelta();
 	}
-	float getMouseWheel() {
+	float getWheel() {
 		return GetMouseWheelMove();
 	}
 } Mouse;
