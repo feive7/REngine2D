@@ -15,11 +15,14 @@ int main(int argc, char** argv) {
     SetTargetFPS(60);
 
     // Create scene
-    Sprite2D* sprite = new Sprite2D();
-    sprite->setPosition({400.0f,225.0f});
-    sprite->size = {100.0f,100.0f};
-    sprite->setTexture("../assets/funi.jpg");
-    sprite->reparent(scene);
+    SolidBox* box = new SolidBox();
+    box->size = {50.0f,50.0f};
+    box->setPosition(400.0f,225.0f);
+    box->reparent(scene);
+
+    CollisionBox* collision = new CollisionBox();
+    collision->size = box->size;
+    collision->reparent(box);
 
     // Initialize scene tree
     ReadyTree();
@@ -31,6 +34,7 @@ int main(int argc, char** argv) {
         BeginDrawing();
         ClearBackground(DARKGRAY);
         DrawTree();
+        DrawCircleV(collision->closestPoint(Mouse.getPosition()),3.0f,BLUE);
         DrawFPS(5, 5);
         EndDrawing();
     }
