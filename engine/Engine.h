@@ -15,6 +15,9 @@ struct {
 	Vector2 getDelta() {
 		return GetMouseDelta();
 	}
+	float getMouseWheel() {
+		return GetMouseWheelMove();
+	}
 } Mouse;
 
 // Root object
