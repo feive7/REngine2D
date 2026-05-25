@@ -3,6 +3,7 @@ project(rengine2d)
 
 if(WIN32)
 set(raylib_DIR "../Libraries/raylib")
+set(box2d_DIR "../Libraries/box2d")
 endif()
 
 set(CMAKE_CXX_STANDARD 20)
